@@ -187,7 +187,7 @@ public class RestApi {
      */
     @PutMapping(path = "/campaigns/{campID}/ads/{adID}")
     public void updateAdInfo(@RequestBody Ad ad, @PathVariable Integer campID,  @PathVariable Integer adID) {
-        // TODO
+        campaignService.updateCampAd(campID, ad, adID);
     }
 
     /**
