@@ -82,7 +82,25 @@ public class CampaignServiceImpl implements CampaignService {
     @Override
     public void updateCampaign(Integer campId, Campaign campaign) {
         //campaign.setID(campId);
-        campaignRepo.save(campaign);
+        Optional<Campaign> camp = campaignRepo.findById(campId);
+        if (camp.isPresent()) {
+            campaign.setID(campId);
+            campaignRepo.save(campaign);
+        }
+    }
+    
+    @Override
+    public void updateCampAd(Integer cmpId, Ad ad, Integer adID) {
+        Optional<Campaign> camp = campaignRepo.findById(cmpId);
+        if (camp.isPresent()) {
+            Map<Integer, Ad> ads = camp.get().mapOfAds();
+
+            if(ads.containsKey(adID)) {
+                camp.get().addAd(ad);
+                campaignRepo.save(camp.get());
+            }
+
+        }
     }
 
 }
