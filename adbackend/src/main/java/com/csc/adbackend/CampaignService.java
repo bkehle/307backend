@@ -11,4 +11,5 @@ public interface CampaignService {
     // public List<Ad> getCampaignAds(Integer cmpId);
     public Ad getRandomAd();
     public void updateCampaign(Integer cpmId, Campaign campaign);
+    public void updateCampAd(Integer cmpId, Ad ad, Integer adID);
 }
